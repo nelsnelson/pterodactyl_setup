@@ -82,6 +82,10 @@ docker exec panel-panel-1 php artisan p:user:make --email=$EMAIL --admin=1 --use
 
 ## Create a node
 
+First, login to the Panel.  The Panel website should be navigable at:
+
+http://triton/auth/login
+
 Create a new node.  (TODO: Automate.  Example in the ./install.sh script.)
 
 ```sh
