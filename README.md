@@ -17,6 +17,18 @@ sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 docker compose version
 ```
 
+
+## Clone this repository
+
+First, clone this repository.
+
+```sh
+git clone git@github.com:nelsnelson/pterodactyl_setup.git
+```
+
+
+## Install Pterodactyl
+
 Download Pterodactyl Panel.
 
 ```sh
@@ -26,11 +38,17 @@ tar -xf panel.tar.gz -C panel
 cd panel
 ```
 
+
+## Services configuration
+
 Modify the `docker-compose.example.yml` file to automatically create an admin user.
 
 ```sh
 cp ../pterodactyl_setup/docker-compose.yml docker-compose-with-wings.yml
 ```
+
+
+## Start services
 
 Test it out.
 
@@ -46,6 +64,9 @@ To tear down (warning -- this means deleting everything):
 docker compose --file=./docker-compose-with-wings.yml down --volumes --remove-orphans
 ```
 
+
+## Set up Pterodactyl
+
 Create an admin user.
 
 This email has to be an actual real email.
@@ -57,11 +78,17 @@ LAST_NAME=User
 docker exec panel-panel-1 php artisan p:user:make --email=$EMAIL --admin=1 --username=admin --name-first=$FIRST_NAME --name-last=$LAST_NAME --password=password --no-interaction
 ```
 
+
+## Create a node
+
 Create a new node.  (TODO: Automate.  Example in the ./install.sh script.)
 
 ```sh
 # Name it 01, or something.
 ```
+
+
+## Configure the Wings service
 
 Perform an "Auto-deploy" operation in the Panel.  (This will not work, because wings crashloops until the configuration exists.)
 
@@ -96,13 +123,8 @@ remote: 'http://triton'
 EOF
 ```
 
-Create a new IP allocation for the node.
 
-```sh
-192.1681.141
-triton
-25565 -> 27000-27050
-```
+### Enable CORS
 
 Enable CORS for Panel's web interface.
 
@@ -118,3 +140,15 @@ sudo sed -i.bak -f - /var/lib/pterodactyl/wings/config.yml <<'EOF'
 }
 EOF
 ```
+
+
+## Allocate IP address
+
+Create a new IP allocation for the node.
+
+```sh
+192.1681.141
+triton
+25565 -> 27000-27050
+```
+
