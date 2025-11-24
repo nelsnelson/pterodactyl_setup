@@ -32,6 +32,7 @@ git clone git@github.com:nelsnelson/pterodactyl_setup.git
 Download Pterodactyl Panel.
 
 ```sh
+# As of 2025-11-23, latest stable is v1.11.11
 curl --remote-name --location 'https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz'
 mkdir panel
 tar -xf panel.tar.gz -C panel
